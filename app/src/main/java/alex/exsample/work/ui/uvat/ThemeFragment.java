@@ -1,8 +1,11 @@
 package alex.exsample.work.ui.uvat;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
@@ -45,3 +48,8 @@ public class ThemeFragment extends Fragment {
         binding = null;
     }
 }
+//                Toast toast = Toast.makeText(getContext(), всплывающая подсказка
+//                        "Пора покормить кота!",
+//                        Toast.LENGTH_SHORT);
+//                toast.setGravity(Gravity.CENTER, 0, 0);
+//                toast.show(); //

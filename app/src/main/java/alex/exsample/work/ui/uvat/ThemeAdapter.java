@@ -1,4 +1,6 @@
 package alex.exsample.work.ui.uvat;
+import android.annotation.SuppressLint;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +15,14 @@ import alex.exsample.work.databinding.ThemeItemBinding;
 
 public class ThemeAdapter extends RecyclerView.Adapter<ThemeAdapter.ThemeHolder>  {
     ArrayList<Theme> themeList = new ArrayList<Theme>();
-    public class ThemeHolder extends RecyclerView.ViewHolder{
+    public class ThemeHolder extends RecyclerView.ViewHolder {
         private ThemeItemBinding binding;
         public ThemeHolder(@NonNull View itemView) {
             super(itemView);
             binding = ThemeItemBinding.bind(itemView);
+
         }
+
         void bind(Theme theme){
             binding.iv2.setImageResource(theme.imageId);
             binding.tvTitle.setText(theme.title);
@@ -33,8 +37,16 @@ public class ThemeAdapter extends RecyclerView.Adapter<ThemeAdapter.ThemeHolder>
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ThemeHolder holder, int position) { //
+    public void onBindViewHolder(@NonNull ThemeHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.bind(themeList.get(position));
+
+//        holder.itemView.setOnClickListener (new View.OnClickListener() { // нажатие на rcView рабочий метод, но не совсем корректный
+//            @Override
+//            public void onClick(View v) {
+//                Log.d("MyLog", String.valueOf(position));
+//                // action on click
+//            }
+//        });
     }
 
     @Override
