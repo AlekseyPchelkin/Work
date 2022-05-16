@@ -24,7 +24,7 @@
         tools:layout="@layout/fragment_slideshow" />
     <fragment
         android:id="@+id/nav_theme"
-        android:name="alex.exsample.work.ui.uvat.ThemeFragment"
+        android:name="alex.exsample.work.ui.lectures.ThemeFragment"
         android:label="@string/menu_theme"
         tools:layout="@layout/fragment_theme" />
 </navigation>

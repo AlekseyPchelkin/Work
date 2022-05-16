@@ -1,4 +1,4 @@
-package alex.exsample.work.ui.uvat;
+package alex.exsample.work.ui.lectures;
 
 final class Theme {
     public int imageId;
