@@ -18,7 +18,7 @@ import alex.exsample.work.databinding.FragmentThemeBinding;
 import alex.exsample.work.db.DbHelper;
 import alex.exsample.work.db.DbQuestion;
 
-public class ThemeFragmentMain extends Fragment implements ThemeAdapter.Lestener {
+public class ThemeFragmentMain extends Fragment {
     private FragmentThemeBinding binding;
     private ThemeAdapter adapter = new ThemeAdapter();
     int [] picture_mass = new int[]{R.drawable.engine};
@@ -42,11 +42,5 @@ public class ThemeFragmentMain extends Fragment implements ThemeAdapter.Lestener
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
-    }
-
-    public String getTitle() {
-        ThemeAdapter adapter = new ThemeAdapter();
-        String title = adapter.Title();
-        return title;
     }
 }

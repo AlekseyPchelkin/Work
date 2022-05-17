@@ -65,10 +65,6 @@ public class ThemeAdapter extends RecyclerView.Adapter<ThemeAdapter.ThemeHolder>
         return themeList.size();
     }
 
-    String Title() {
-        return theme_title;
-    }
-
     void addTheme(Theme theme){
         themeList.add(theme);
         notifyDataSetChanged();
@@ -76,9 +72,5 @@ public class ThemeAdapter extends RecyclerView.Adapter<ThemeAdapter.ThemeHolder>
 
     void clearTheme() {
         themeList.clear();
-    }
-
-    interface Lestener {
-        String getTitle();
     }
 }
