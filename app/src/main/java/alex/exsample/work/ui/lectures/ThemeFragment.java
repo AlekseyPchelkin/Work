@@ -3,6 +3,7 @@ import android.annotation.SuppressLint;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +16,11 @@ import alex.exsample.work.R;
 //import alex.exsample.work.db.DbAccessHelper;
 import alex.exsample.work.databinding.FragmentThemeBinding;
 import alex.exsample.work.db.DbHelper;
+import alex.exsample.work.db.DbQuestion;
 
 public class ThemeFragment extends Fragment {
     SQLiteDatabase db;
-    Cursor userCursor;
+   // Cursor userCursor;
     DbHelper dataHelper;
     private FragmentThemeBinding binding;
     private ThemeAdapter adapter = new ThemeAdapter();
@@ -30,26 +32,18 @@ public class ThemeFragment extends Fragment {
         return root;
     }
 
-    @SuppressLint("Range")
     void init() {
         binding.rcView.setLayoutManager(new GridLayoutManager(this.getContext(), 2)); // количество тем в строке
         binding.rcView.setAdapter(adapter);
 
         Theme theme;
-        dataHelper = new DbHelper(getContext());
-        dataHelper.create_db();
-        db = dataHelper.open();
-        userCursor = db.rawQuery("select * from '" + "subject" + "'", null);
-        int count = userCursor.getColumnCount();
-        userCursor = db.rawQuery("SELECT title from '" +  "subject" + "'",null);
         String item_title;
-        for (int i = 0; i < count-1; ++i ) { // вывод из базы данных, не совсем корректно, лучше реализовать отдельным классом для этого
-            userCursor.moveToPosition(i);
-            item_title = userCursor.getString(userCursor.getColumnIndex("title"));
+        DbQuestion question = new DbQuestion("subject", getContext());
+        for (int i = 0; i < question.GetCountPosition()-1; ++i ) {
+            item_title = question.GetField("title",i);
             theme = new Theme(picture_mass[0],item_title);
             adapter.addTheme(theme);
         }
-        userCursor.close();
     }
 
     @Override

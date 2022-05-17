@@ -6,11 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import alex.exsample.work.R;
 import alex.exsample.work.databinding.ThemeItemBinding;
@@ -35,16 +36,16 @@ public class ThemeAdapter extends RecyclerView.Adapter<ThemeAdapter.ThemeHolder>
                 public void onClick(View view) {
                     theme_title = String.valueOf(theme.title);
                     for (int i = 0; i < title_name.length; ++i) {
-                        if(theme_title != title_name[i]){
+                        if(Objects.equals(theme_title, title_name[i])){
                             Log.d("MyLog1", "лох");
-
+                            Navigation.findNavController(view).navigate(R.id.nav_MainTheme);
+                            break;
                         }
                     }
                     Log.d("MyLog1", String.valueOf(theme.title));
                 }
             });
         }
-
     }
 
     @NonNull
