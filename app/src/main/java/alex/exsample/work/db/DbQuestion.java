@@ -23,10 +23,11 @@ public class DbQuestion {
         db = dataHelper.open();
     }
 
-    public int GetCountPosition() {
-       Cursor userCursor;
+    public int GetCountPosition(String column) {
+       String question = "SELECT " + column + " from '" +  table_name + "'";
        userCursor = db.rawQuery("select * from '" + table_name + "'", null);
-       int count = userCursor.getColumnCount();
+       userCursor = db.rawQuery(question,null);
+       int count = userCursor.getCount();
        return count;
     }
 

@@ -34,8 +34,13 @@ public class ThemeFragmentMain extends Fragment {
         binding.rcView.setLayoutManager(new GridLayoutManager(this.getContext(), 2)); // количество тем в строке
         binding.rcView.setAdapter(adapter);
         Theme theme;
-        theme = new Theme(picture_mass[0],"ку");
-        adapter.addTheme(theme);
+        String item_title;
+        DbQuestion question = new DbQuestion("Topic", getContext());
+        for (int i = 0; i < question.GetCountPosition("title"); ++i) {
+           item_title = question.GetField("title",i);
+           theme = new Theme(picture_mass[0],item_title);
+           adapter.addTheme(theme);
+        }
     }
 
     @Override

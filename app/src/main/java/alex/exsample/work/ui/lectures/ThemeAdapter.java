@@ -20,7 +20,7 @@ import alex.exsample.work.databinding.ThemeItemBinding;
 public class ThemeAdapter extends RecyclerView.Adapter<ThemeAdapter.ThemeHolder> {
     ArrayList<Theme> themeList = new ArrayList<Theme>();
     String theme_title;
-    String []title_name = new String[] {"sewr"};//!!!изменть с нормальной базой данных
+    String []title_name = new String[] {"Техническое устройство систем автомобиля"};
 
     public class ThemeHolder extends RecyclerView.ViewHolder {
         private ThemeItemBinding binding;

@@ -33,8 +33,8 @@ public class ThemeFragment extends Fragment {
         binding.rcView.setAdapter(adapter);
         Theme theme;
         String item_title;
-        DbQuestion question = new DbQuestion("subject", getContext());
-        for (int i = 0; i < question.GetCountPosition()-1; ++i ) {
+        DbQuestion question = new DbQuestion("Themes", getContext());
+        for (int i = 0; i < question.GetCountPosition("title"); ++i ) {
             item_title = question.GetField("title",i);
             theme = new Theme(picture_mass[0],item_title);
             adapter.addTheme(theme);
