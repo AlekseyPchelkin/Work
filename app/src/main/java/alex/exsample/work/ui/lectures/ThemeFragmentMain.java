@@ -16,12 +16,9 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import alex.exsample.work.R;
 import alex.exsample.work.databinding.FragmentThemeBinding;
 import alex.exsample.work.db.DbHelper;
+import alex.exsample.work.db.DbQuestion;
 
 public class ThemeFragmentMain extends Fragment implements ThemeAdapter.Lestener {
-   // String title;
-    SQLiteDatabase db;
-    Cursor userCursor;
-    DbHelper dataHelper;
     private FragmentThemeBinding binding;
     private ThemeAdapter adapter = new ThemeAdapter();
     int [] picture_mass = new int[]{R.drawable.engine};
@@ -33,12 +30,12 @@ public class ThemeFragmentMain extends Fragment implements ThemeAdapter.Lestener
         return root;
     }
 
-    @SuppressLint("Range")
     void init() {
         binding.rcView.setLayoutManager(new GridLayoutManager(this.getContext(), 2)); // количество тем в строке
         binding.rcView.setAdapter(adapter);
-        String t = getTitle();
-        Log.d("MyLog1", t );
+        Theme theme;
+        theme = new Theme(picture_mass[0],"ку");
+        adapter.addTheme(theme);
     }
 
     @Override

@@ -13,15 +13,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import alex.exsample.work.R;
-//import alex.exsample.work.db.DbAccessHelper;
 import alex.exsample.work.databinding.FragmentThemeBinding;
-import alex.exsample.work.db.DbHelper;
 import alex.exsample.work.db.DbQuestion;
 
 public class ThemeFragment extends Fragment {
-    SQLiteDatabase db;
-   // Cursor userCursor;
-    DbHelper dataHelper;
     private FragmentThemeBinding binding;
     private ThemeAdapter adapter = new ThemeAdapter();
     int [] picture_mass = new int[]{R.drawable.engine};
@@ -33,9 +28,9 @@ public class ThemeFragment extends Fragment {
     }
 
     void init() {
+        adapter.clearTheme();
         binding.rcView.setLayoutManager(new GridLayoutManager(this.getContext(), 2)); // количество тем в строке
         binding.rcView.setAdapter(adapter);
-
         Theme theme;
         String item_title;
         DbQuestion question = new DbQuestion("subject", getContext());

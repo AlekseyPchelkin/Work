@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
+import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,7 +20,7 @@ import alex.exsample.work.databinding.ThemeItemBinding;
 public class ThemeAdapter extends RecyclerView.Adapter<ThemeAdapter.ThemeHolder> {
     ArrayList<Theme> themeList = new ArrayList<Theme>();
     String theme_title;
-    String []title_name = new String[] {"sewr"};//!!!
+    String []title_name = new String[] {"sewr"};//!!!изменть с нормальной базой данных
 
     public class ThemeHolder extends RecyclerView.ViewHolder {
         private ThemeItemBinding binding;
@@ -39,7 +40,6 @@ public class ThemeAdapter extends RecyclerView.Adapter<ThemeAdapter.ThemeHolder>
                         if(Objects.equals(theme_title, title_name[i])){
                             Log.d("MyLog1", "лох");
                             Navigation.findNavController(view).navigate(R.id.nav_MainTheme);
-                            break;
                         }
                     }
                     Log.d("MyLog1", String.valueOf(theme.title));
@@ -58,12 +58,6 @@ public class ThemeAdapter extends RecyclerView.Adapter<ThemeAdapter.ThemeHolder>
     @Override
     public void onBindViewHolder(@NonNull ThemeHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.bind(themeList.get(position));
-      //  holder.itemView.setOnClickListener (new View.OnClickListener() { // нажатие на rcView рабочий метод, но не совсем корректный
-      //      @Override
-      //      public void onClick(View v) {
-      //          Log.d("MyLog", String.valueOf(position));
-      //      }
-      //  });
     }
 
     @Override
@@ -78,6 +72,10 @@ public class ThemeAdapter extends RecyclerView.Adapter<ThemeAdapter.ThemeHolder>
     void addTheme(Theme theme){
         themeList.add(theme);
         notifyDataSetChanged();
+    }
+
+    void clearTheme() {
+        themeList.clear();
     }
 
     interface Lestener {
