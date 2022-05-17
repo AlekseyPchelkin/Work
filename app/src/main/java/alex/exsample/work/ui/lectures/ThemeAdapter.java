@@ -1,5 +1,8 @@
 package alex.exsample.work.ui.lectures;
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +23,7 @@ import alex.exsample.work.databinding.ThemeItemBinding;
 public class ThemeAdapter extends RecyclerView.Adapter<ThemeAdapter.ThemeHolder> {
     ArrayList<Theme> themeList = new ArrayList<Theme>();
     String theme_title;
+    Bundle bundle = new Bundle();
     String []title_name = new String[] {"Техническое устройство систем автомобиля"};
 
     public class ThemeHolder extends RecyclerView.ViewHolder {
@@ -39,7 +43,9 @@ public class ThemeAdapter extends RecyclerView.Adapter<ThemeAdapter.ThemeHolder>
                     for (int i = 0; i < title_name.length; ++i) {
                         if(Objects.equals(theme_title, title_name[i])){
                             Log.d("MyLog1", "лох");
-                            Navigation.findNavController(view).navigate(R.id.nav_MainTheme);
+                            NavController navController = Navigation.findNavController(view);
+                            bundle.putString("title",theme_title);
+                            navController.navigate(R.id.nav_MainTheme, bundle);
                         }
                     }
                     Log.d("MyLog1", String.valueOf(theme.title));

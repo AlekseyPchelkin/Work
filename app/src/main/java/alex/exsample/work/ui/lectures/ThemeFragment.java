@@ -18,24 +18,24 @@ import alex.exsample.work.db.DbQuestion;
 
 public class ThemeFragment extends Fragment {
     private FragmentThemeBinding binding;
-    private ThemeAdapter adapter = new ThemeAdapter();
+    private ThemeAdapter adapter;
     int [] picture_mass = new int[]{R.drawable.engine};
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentThemeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+        adapter = new ThemeAdapter();
         init();
         return root;
     }
 
     void init() {
-        adapter.clearTheme();
         binding.rcView.setLayoutManager(new GridLayoutManager(this.getContext(), 2)); // количество тем в строке
         binding.rcView.setAdapter(adapter);
         Theme theme;
         String item_title;
         DbQuestion question = new DbQuestion("Themes", getContext());
-        for (int i = 0; i < question.GetCountPosition("title"); ++i ) {
-            item_title = question.GetField("title",i);
+        for (int i = 0; i < question.getCountPosition("title"); ++i ) {
+            item_title = question.getField("title",i);
             theme = new Theme(picture_mass[0],item_title);
             adapter.addTheme(theme);
         }

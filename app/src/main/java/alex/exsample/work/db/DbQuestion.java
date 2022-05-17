@@ -23,7 +23,7 @@ public class DbQuestion {
         db = dataHelper.open();
     }
 
-    public int GetCountPosition(String column) {
+    public int getCountPosition(String column) {
        String question = "SELECT " + column + " from '" +  table_name + "'";
        userCursor = db.rawQuery("select * from '" + table_name + "'", null);
        userCursor = db.rawQuery(question,null);
@@ -31,7 +31,7 @@ public class DbQuestion {
        return count;
     }
 
-    public String GetField(String field, int position){
+    public String getField(String field, int position){
         String question = "SELECT " + field + " from '" +  table_name + "'";
         userCursor = db.rawQuery("select * from '" + table_name + "'", null);
         userCursor = db.rawQuery(question,null);
@@ -39,6 +39,13 @@ public class DbQuestion {
         @SuppressLint("Range") String item_title = userCursor.getString(userCursor.getColumnIndex(field));
         return  item_title;
     }
+
+  //  public String getTopic(String title)
+  //  {
+  //      String question = "SELECT " + title + " from '" +  table_name + "'" + "WHERE id = ";
+  //      userCursor = db.rawQuery("select * from '" + table_name + "'", null);
+  //
+  //  }
 
 
 }

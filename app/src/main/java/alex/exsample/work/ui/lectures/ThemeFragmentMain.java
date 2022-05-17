@@ -1,6 +1,7 @@
 package alex.exsample.work.ui.lectures;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -11,6 +12,8 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavOptions;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import alex.exsample.work.R;
@@ -23,9 +26,12 @@ public class ThemeFragmentMain extends Fragment {
     private ThemeAdapter adapter = new ThemeAdapter();
     int [] picture_mass = new int[]{R.drawable.engine};
 
+
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentThemeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+        String s = getArguments().getString("title");
+        Log.d("MyLog22", s);
         init();
         return root;
     }
@@ -35,9 +41,10 @@ public class ThemeFragmentMain extends Fragment {
         binding.rcView.setAdapter(adapter);
         Theme theme;
         String item_title;
+
         DbQuestion question = new DbQuestion("Topic", getContext());
-        for (int i = 0; i < question.GetCountPosition("title"); ++i) {
-           item_title = question.GetField("title",i);
+        for (int i = 0; i < question.getCountPosition("title"); ++i) {
+           item_title = question.getField("title",i);
            theme = new Theme(picture_mass[0],item_title);
            adapter.addTheme(theme);
         }
