@@ -24,27 +24,28 @@ import alex.exsample.work.db.DbQuestion;
 public class ThemeFragmentMain extends Fragment {
     private FragmentThemeBinding binding;
     private ThemeAdapter adapter = new ThemeAdapter();
+    DbQuestion question;
     int [] picture_mass = new int[]{R.drawable.engine};
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentThemeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        String s = getArguments().getString("title");
-        Log.d("MyLog22", s);
-        init();
+        String titleTheme = getArguments().getString("title");
+        question = new DbQuestion("Themes", getContext());
+        int id = question.getIdWhereTitle(titleTheme);
+        init(id);
         return root;
     }
 
-    void init() {
+    void init(int id) {
         binding.rcView.setLayoutManager(new GridLayoutManager(this.getContext(), 2)); // количество тем в строке
         binding.rcView.setAdapter(adapter);
         Theme theme;
         String item_title;
-
-        DbQuestion question = new DbQuestion("Topic", getContext());
-        for (int i = 0; i < question.getCountPosition("title"); ++i) {
-           item_title = question.getField("title",i);
+        question = new DbQuestion("Topic", getContext());
+        for (int i = 0; i < question.getCountFieldID("title",id); ++i) {
+           item_title = question.getIdField("title", id, i);
            theme = new Theme(picture_mass[0],item_title);
            adapter.addTheme(theme);
         }

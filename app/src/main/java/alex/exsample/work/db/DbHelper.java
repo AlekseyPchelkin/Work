@@ -17,7 +17,7 @@ import java.io.OutputStream;
 
 public class DbHelper extends SQLiteOpenHelper {
     private static String DB_PATH;
-    private static String DB_NAME = "DB2.db";
+    private static String DB_NAME = "DB3.db";
     private static final int VER = 1;
     private Context myContext;
 

@@ -15,6 +15,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import alex.exsample.work.R;
@@ -24,8 +25,8 @@ public class ThemeAdapter extends RecyclerView.Adapter<ThemeAdapter.ThemeHolder>
     ArrayList<Theme> themeList = new ArrayList<Theme>();
     String theme_title;
     Bundle bundle = new Bundle();
-    String []title_name = new String[] {"Техническое устройство систем автомобиля"};
-
+    String []title_name = new String[] {"Техническое устройство систем автомобиля", "Техническое обслуживание автомобилей", "Текущий ремонт автомобилей"};
+    // сделать динамическим запросом в базу данных
     public class ThemeHolder extends RecyclerView.ViewHolder {
         private ThemeItemBinding binding;
         public ThemeHolder(@NonNull View itemView) {
@@ -36,19 +37,19 @@ public class ThemeAdapter extends RecyclerView.Adapter<ThemeAdapter.ThemeHolder>
         void bind(Theme theme){
             binding.iv2.setImageResource(theme.imageId);
             binding.tvTitle.setText(theme.title);
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     theme_title = String.valueOf(theme.title);
                     for (int i = 0; i < title_name.length; ++i) {
                         if(Objects.equals(theme_title, title_name[i])){
-                            Log.d("MyLog1", "лох");
                             NavController navController = Navigation.findNavController(view);
                             bundle.putString("title",theme_title);
                             navController.navigate(R.id.nav_MainTheme, bundle);
                         }
                     }
-                    Log.d("MyLog1", String.valueOf(theme.title));
+                 //   Log.d("MyLog1", String.valueOf(theme.title));
                 }
             });
         }

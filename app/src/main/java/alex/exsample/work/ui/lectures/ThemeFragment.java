@@ -34,7 +34,7 @@ public class ThemeFragment extends Fragment {
         Theme theme;
         String item_title;
         DbQuestion question = new DbQuestion("Themes", getContext());
-        for (int i = 0; i < question.getCountPosition("title"); ++i ) {
+        for (int i = 0; i < question.getCountFieldPosition("title"); ++i ) {
             item_title = question.getField("title",i);
             theme = new Theme(picture_mass[0],item_title);
             adapter.addTheme(theme);
