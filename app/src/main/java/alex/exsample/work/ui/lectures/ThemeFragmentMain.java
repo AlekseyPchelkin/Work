@@ -23,7 +23,7 @@ import alex.exsample.work.db.DbQuestion;
 
 public class ThemeFragmentMain extends Fragment {
     private FragmentThemeBinding binding;
-    private ThemeAdapter adapter = new ThemeAdapter();
+    private ThemeAdapter adapter;
     DbQuestion question;
     int [] picture_mass = new int[]{R.drawable.engine};
 
@@ -33,7 +33,8 @@ public class ThemeFragmentMain extends Fragment {
         View root = binding.getRoot();
         String titleTheme = getArguments().getString("title");
         question = new DbQuestion("Themes", getContext());
-        int id = question.getIdWhereTitle(titleTheme);
+        int id = question.getIdWhereTitle(titleTheme, "id_theme");
+        adapter = new ThemeAdapter();
         init(id);
         return root;
     }

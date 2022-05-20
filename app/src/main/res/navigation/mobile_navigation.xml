@@ -43,7 +43,18 @@
         <action
             android:id="@+id/action_nav_MainTheme_to_nav_theme"
             app:destination="@id/nav_theme" />
+        <action
+            android:id="@+id/action_nav_MainTheme_to_nav_pdf"
+            app:destination="@id/nav_pdf" />
     </fragment>
-
+    <fragment
+        android:id="@+id/nav_pdf"
+        android:name="alex.exsample.work.ui.lectures.PdfReader"
+        android:label="@string/menu_slideshow"
+        tools:layout="@layout/fragment_pdf_reader" >
+        <action
+            android:id="@+id/action_nav_pdf_to_nav_MainTheme"
+            app:destination="@id/nav_MainTheme" />
+    </fragment>
 
 </navigation>

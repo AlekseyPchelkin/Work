@@ -42,14 +42,23 @@ public class ThemeAdapter extends RecyclerView.Adapter<ThemeAdapter.ThemeHolder>
                 @Override
                 public void onClick(View view) {
                     theme_title = String.valueOf(theme.title);
+                    NavController navController = Navigation.findNavController(view);
+                    boolean checkTheme = false;
                     for (int i = 0; i < title_name.length; ++i) {
                         if(Objects.equals(theme_title, title_name[i])){
-                            NavController navController = Navigation.findNavController(view);
                             bundle.putString("title",theme_title);
                             navController.navigate(R.id.nav_MainTheme, bundle);
+                            checkTheme = true;
                         }
                     }
-                 //   Log.d("MyLog1", String.valueOf(theme.title));
+                    if (!checkTheme){
+                        bundle.putString("title_main",theme_title);
+                        navController.navigate(R.id.nav_pdf, bundle);
+                    }
+                       // bundle.putString("title_main",theme_title);
+                       // Log.d("MyLog1", "лох");
+                       // navController.navigate(R.id.nav_pdf, bundle);
+                       // Log.d("MyLog1", String.valueOf(theme.title));
                 }
             });
         }
