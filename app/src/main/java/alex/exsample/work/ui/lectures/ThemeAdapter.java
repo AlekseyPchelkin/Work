@@ -44,7 +44,7 @@ public class ThemeAdapter extends RecyclerView.Adapter<ThemeAdapter.ThemeHolder>
                     theme_title = String.valueOf(theme.title);
                     NavController navController = Navigation.findNavController(view);
                     boolean checkTheme = false;
-                    for (int i = 0; i < title_name.length; ++i) {
+                    for (int i = 0; i < title_name.length; ++i) { // а вот тут притаился баг (вроде нет)
                         if(Objects.equals(theme_title, title_name[i])){
                             bundle.putString("title",theme_title);
                             navController.navigate(R.id.nav_MainTheme, bundle);

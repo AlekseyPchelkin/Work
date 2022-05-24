@@ -13,31 +13,34 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import alex.exsample.work.R;
-import alex.exsample.work.databinding.FragmentThemeBinding;
+import alex.exsample.work.databinding.FragmentTestMenuBinding;
 import alex.exsample.work.db.DbQuestion;
 
-public class ThemeFragment extends Fragment {
-    private FragmentThemeBinding binding;
-    private ThemeAdapter adapter;
-    int [] picture_mass = new int[]{R.drawable.engine};
+public class TestFragment extends Fragment {
+    private FragmentTestMenuBinding binding;
+    private TestAdapter adapter;
+
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentThemeBinding.inflate(inflater, container, false);
+        binding = FragmentTestMenuBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        adapter = new ThemeAdapter();
-        init();
+        adapter = new TestAdapter();
+        int id_theme = getArguments().getInt("id_theme");
+        init(id_theme);
         return root;
     }
 
-    void init() {
+    void init(int id_theme) {
         binding.rcView.setLayoutManager(new GridLayoutManager(this.getContext(), 1)); // количество тем в строке
         binding.rcView.setAdapter(adapter);
-        Theme theme;
+        Test test;
         String item_title;
-        DbQuestion question = new DbQuestion("Themes", getContext());
-        for (int i = 0; i < question.getCountFieldPosition("title"); ++i ) {
-            item_title = question.getField("title",i);
-            theme = new Theme(picture_mass[0],item_title);
-            adapter.addTheme(theme);
+        int id_test;
+        DbQuestion question = new DbQuestion("Tests", getContext());
+        for (int i = 0; i < question.getCountFieldID("test_description","id", id_theme); ++i){
+            item_title = question.getIdField("test_description", id_theme ,i);
+            id_test = question.getIdWhereTitle(item_title, "id_test", "test_description");
+            test = new Test(item_title, id_test);
+            adapter.addTest(test);
         }
     }
 

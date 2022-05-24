@@ -33,7 +33,7 @@ public class ThemeFragmentMain extends Fragment {
         View root = binding.getRoot();
         String titleTheme = getArguments().getString("title");
         question = new DbQuestion("Themes", getContext());
-        int id = question.getIdWhereTitle(titleTheme, "id_theme");
+        int id = question.getIdWhereTitle(titleTheme, "id_theme", "title");
         adapter = new ThemeAdapter();
         init(id);
         return root;
@@ -45,7 +45,7 @@ public class ThemeFragmentMain extends Fragment {
         Theme theme;
         String item_title;
         question = new DbQuestion("Topic", getContext());
-        for (int i = 0; i < question.getCountFieldID("title",id); ++i) {
+        for (int i = 0; i < question.getCountFieldID("title", "id",id); ++i) {
            item_title = question.getIdField("title", id, i);
            theme = new Theme(picture_mass[0],item_title);
            adapter.addTheme(theme);

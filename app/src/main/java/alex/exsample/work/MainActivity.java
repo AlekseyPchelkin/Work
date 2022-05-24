@@ -1,12 +1,16 @@
 package alex.exsample.work;
 
 import android.os.Bundle;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.MenuItemCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -28,7 +32,12 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        setSupportActionBar(binding.appBarMain.toolbar);
+        Toolbar mActionBarToolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
+        setSupportActionBar(mActionBarToolbar);
+       // setSupportActionBar(binding.appBarMain.toolbar);
+
+
+
         DrawerLayout drawer = binding.drawerLayout;
 
         NavigationView navigationView = binding.navView;
@@ -40,9 +49,15 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
     }
 
+    private MenuItem logoutMI;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
+       // logoutMI = menu.findItem(R.id.action_search);
+       // logoutMI.setVisible(false);
+       // logoutMI = menu.findItem(R.id.action_edit);
+       // logoutMI.setVisible(false);
+        super.onCreateOptionsMenu(menu);
         return true;
     }
 

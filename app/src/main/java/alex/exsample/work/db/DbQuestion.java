@@ -47,8 +47,8 @@ public class DbQuestion {
     }
 
    @SuppressLint("Range")
-   public int getIdWhereTitle(String title, String idName){
-       String question = "SELECT " + idName + " from '" +  table_name + "'" + " Where title = '" + title + "'";
+   public int getIdWhereTitle(String title, String idName, String filed){
+       String question = "SELECT " + idName + " from '" +  table_name + "'" + " Where " + filed + " = '" + title + "'";
        userCursor = db.rawQuery("select * from '" + table_name + "'", null);
        userCursor = db.rawQuery(question,null);
        userCursor.moveToPosition(0);
@@ -66,8 +66,8 @@ public class DbQuestion {
         return item_title;
     }
 
-    public int getCountFieldID(String field, int id){
-        String question = "SELECT " + field + " from '" + table_name + "'" + " Where id = " + id;
+    public int getCountFieldID(String field, String id_name, int id){
+        String question = "SELECT " + field + " from '" + table_name + "'" + " Where " + id_name  + " = " + id;
         userCursor = db.rawQuery("select * from '" + table_name + "'", null);
         userCursor = db.rawQuery(question,null);
         int count = userCursor.getCount();
@@ -83,5 +83,4 @@ public class DbQuestion {
         String item_title = userCursor.getString(userCursor.getColumnIndex("id_pdf"));
         return item_title;
     }
-    // Select id_pdf from Topic Where id_topic = 1
 }

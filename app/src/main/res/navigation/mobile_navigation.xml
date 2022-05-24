@@ -55,6 +55,26 @@
         <action
             android:id="@+id/action_nav_pdf_to_nav_MainTheme"
             app:destination="@id/nav_MainTheme" />
+        <action
+            android:id="@+id/action_nav_pdf_to_nav_test"
+            app:destination="@id/nav_test_menu" />
     </fragment>
+    <fragment
+        android:id="@+id/nav_test_menu"
+        android:name="alex.exsample.work.ui.lectures.TestFragment"
+        android:label="@string/menu_theme"
+        tools:layout="@layout/fragment_test_menu" >
+        <action
+            android:id="@+id/action_nav_test_to_nav_pdf"
+            app:destination="@id/nav_pdf" />
+        <action
+            android:id="@+id/action_nav_test_menu_to_nav_test"
+            app:destination="@id/nav_test" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_test"
+        android:name="alex.exsample.work.ui.lectures.TestQuestion"
+        android:label="@string/menu_theme"
+        tools:layout="@layout/fragment_test" />
 
 </navigation>
