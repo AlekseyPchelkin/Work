@@ -55,10 +55,6 @@ public class ThemeAdapter extends RecyclerView.Adapter<ThemeAdapter.ThemeHolder>
                         bundle.putString("title_main",theme_title);
                         navController.navigate(R.id.nav_pdf, bundle);
                     }
-                       // bundle.putString("title_main",theme_title);
-                       // Log.d("MyLog1", "лох");
-                       // navController.navigate(R.id.nav_pdf, bundle);
-                       // Log.d("MyLog1", String.valueOf(theme.title));
                 }
             });
         }
@@ -81,7 +77,7 @@ public class ThemeAdapter extends RecyclerView.Adapter<ThemeAdapter.ThemeHolder>
         return themeList.size();
     }
 
-    void addTheme(Theme theme){
+    public void addTheme(Theme theme){
         themeList.add(theme);
         notifyDataSetChanged();
     }

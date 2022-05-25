@@ -36,12 +36,10 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(mActionBarToolbar);
        // setSupportActionBar(binding.appBarMain.toolbar);
 
-
-
         DrawerLayout drawer = binding.drawerLayout;
 
         NavigationView navigationView = binding.navView;
-        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_gallery, R.id.nav_slideshow)
+        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_favorites, R.id.nav_theme)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);

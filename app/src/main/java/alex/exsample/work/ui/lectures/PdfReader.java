@@ -1,9 +1,6 @@
 package alex.exsample.work.ui.lectures;
 
-import android.content.Intent;
-import android.graphics.drawable.Icon;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,20 +10,15 @@ import android.view.ViewGroup;
 import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.github.barteksc.pdfviewer.PDFView;
 
-import alex.exsample.work.MainActivity;
 import alex.exsample.work.R;
-import alex.exsample.work.databinding.FragmentGalleryBinding;
 import alex.exsample.work.databinding.FragmentPdfReaderBinding;
 import alex.exsample.work.db.DbQuestion;
-import alex.exsample.work.ui.gallery.GalleryViewModel;
 
 public class PdfReader extends Fragment {
     private FragmentPdfReaderBinding binding;
@@ -49,13 +41,18 @@ public class PdfReader extends Fragment {
 
     public boolean onOptionsItemSelected(@NonNull MenuItem item){
         switch (item.getItemId()){
-            case R.id.action_edit:
+            case R.id.action_test:
                 NavController navController = Navigation.findNavController(getView());
                 bundle.putInt("id_theme",id);
                 navController.navigate(R.id.nav_test_menu, bundle);
                 return true;
-            case R.id.action_search:
-                return false;
+            case R.id.action_favorites:
+                question = new DbQuestion("Topic", getContext());
+                if (question.getField("favorite", id) == "true")
+                    question.setFavorite("false",id);
+                else
+                    question.setFavorite("true",id);
+                return true;
         }
         return true;
     }

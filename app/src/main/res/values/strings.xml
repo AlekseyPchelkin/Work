@@ -9,6 +9,10 @@
     <string name="action_addfavorite">Добавить в любимые</string>
     <string name="action_gotest">Перейти к тестированию</string>
     <string name="test">Тест №</string>
+    <string name="bt_text_next">Следующий...</string>ъ
+    <string name="tv_answer">Ответ</string>
+    <string name="test_res">Результат теста</string>
+    <string name="favorites">Избранное</string>
 
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>

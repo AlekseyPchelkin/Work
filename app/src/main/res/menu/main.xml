@@ -8,14 +8,14 @@
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/action_search"
+        android:id="@+id/action_favorites"
         android:title="@android:string/search_go"
         android:icon="@drawable/ic_menu_camera"
         app:showAsAction="always|collapseActionView" />
 
 
     <item
-        android:id="@+id/action_edit"
+        android:id="@+id/action_test"
         android:title="@string/action_settings"
         android:icon="@drawable/ic_menu_camera"
         app:showAsAction="ifRoom" />

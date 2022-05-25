@@ -13,13 +13,13 @@
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="alex.exsample.work.ui.gallery.GalleryFragment"
+        android:name="alex.exsample.work.ui.test.GalleryFragment"
         android:label="@string/menu_gallery"
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
         android:id="@+id/nav_slideshow"
-        android:name="alex.exsample.work.ui.slideshow.SlideshowFragment"
+        android:name="alex.exsample.work.ui.favorites.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
 
@@ -73,8 +73,27 @@
     </fragment>
     <fragment
         android:id="@+id/nav_test"
-        android:name="alex.exsample.work.ui.lectures.TestQuestion"
+        android:name="alex.exsample.work.ui.lectures.QuestionFragment"
         android:label="@string/menu_theme"
-        tools:layout="@layout/fragment_test" />
+        tools:layout="@layout/fragment_questions" >
+        <action
+            android:id="@+id/action_nav_test_to_nav_test_result"
+            app:destination="@id/nav_test_result" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_test_result"
+        android:name="alex.exsample.work.ui.test.TestResultFragment"
+        android:label="@string/test_res"
+        tools:layout="@layout/fragment_test_results" >
+        <action
+            android:id="@+id/action_nav_test_result_to_nav_test_menu"
+            app:destination="@id/nav_test_menu" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_favorites"
+        android:name="alex.exsample.work.ui.favorites.FavoritesFragment"
+        android:label="@string/favorites"
+        tools:layout="@layout/fragment_favorites" />
 
 </navigation>

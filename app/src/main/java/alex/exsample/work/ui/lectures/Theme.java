@@ -1,6 +1,6 @@
 package alex.exsample.work.ui.lectures;
 
-final class Theme {
+public final class Theme {
     public int imageId;
     public String title;
     public Theme (int imageId, String title) {

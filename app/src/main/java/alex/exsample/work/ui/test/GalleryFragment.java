@@ -1,4 +1,4 @@
-package alex.exsample.work.ui.gallery;
+package alex.exsample.work.ui.test;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

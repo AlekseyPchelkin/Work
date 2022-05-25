@@ -12,6 +12,4 @@
         android:id="@+id/pdfView">
     </com.github.barteksc.pdfviewer.PDFView>
 
-
-
 </RelativeLayout>

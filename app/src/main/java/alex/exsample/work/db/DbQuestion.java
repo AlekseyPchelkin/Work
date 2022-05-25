@@ -1,6 +1,7 @@
 package alex.exsample.work.db;
 
 import android.annotation.SuppressLint;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -75,12 +76,42 @@ public class DbQuestion {
     }
 
     @SuppressLint("Range")
-    public String getPDF (int id){
+    public String getPDF (int id){ // изменить вместе с getFavorite
         String question = "SELECT id_pdf from '" + table_name + "'" + " Where id_topic = " + id;
         userCursor = db.rawQuery("select * from '" + table_name + "'", null);
         userCursor = db.rawQuery(question,null);
         userCursor.moveToPosition(0);
         String item_title = userCursor.getString(userCursor.getColumnIndex("id_pdf"));
         return item_title;
+    }
+
+    public void setResulTest(String check, int position){
+        ContentValues values = new ContentValues();
+        values.put("right", check);
+        db.update(table_name,values, "number_question=?",new String[]{String.valueOf(position+1)});
+    }
+
+    public void setFavorite(String check, int position){
+        ContentValues values = new ContentValues();
+        values.put("favorite", check);
+        db.update(table_name,values, "id_topic=?",new String[]{String.valueOf(position)});
+    }
+
+    @SuppressLint("Range")
+    public String getFavorite(int id){
+        String question = "SELECT favorite from '" + table_name + "'" + " Where id_topic = " + Integer.toString(id + 1);
+        userCursor = db.rawQuery("select * from '" + table_name + "'", null);
+        userCursor = db.rawQuery(question,null);
+        userCursor.moveToPosition(0);
+        return userCursor.getString(userCursor.getColumnIndex("favorite"));
+    }
+
+    @SuppressLint("Range")
+    public String getCheck(int position){ // временный метод для проверки бд
+        String question = "SELECT " + " right " + " from '" + table_name + "'" + " Where number_question = " + Integer.toString(position+1);
+        userCursor = db.rawQuery("select * from '" + table_name + "'", null);
+        userCursor = db.rawQuery(question,null);
+        userCursor.moveToPosition(0);
+        return userCursor.getString(userCursor.getColumnIndex("right"));
     }
 }

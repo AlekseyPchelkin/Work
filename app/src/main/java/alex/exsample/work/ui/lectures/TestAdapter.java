@@ -16,7 +16,6 @@ import java.util.Objects;
 
 import alex.exsample.work.R;
 import alex.exsample.work.databinding.TestItemBinding;
-import alex.exsample.work.db.DbQuestion;
 
 public class TestAdapter extends RecyclerView.Adapter<TestAdapter.TestHolder> {
     ArrayList<Test> testList = new ArrayList<Test>();
