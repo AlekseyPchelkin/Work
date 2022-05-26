@@ -44,7 +44,7 @@ public class DbQuestion {
         userCursor = db.rawQuery(question,null);
         userCursor.moveToPosition(position);
         String item_title = userCursor.getString(userCursor.getColumnIndex(field));
-        return  item_title;
+        return item_title;
     }
 
    @SuppressLint("Range")
@@ -56,6 +56,17 @@ public class DbQuestion {
        String id = userCursor.getString(userCursor.getColumnIndex(idName));
        return Integer.parseInt(id);
    }
+
+    @SuppressLint("Range")
+    public int getIdWhereId(int idWhere, String idName, String filed, int position){
+        String question = "SELECT " + idName + " from '" +  table_name + "'" + " Where " + filed + " = '" + idWhere + "'";
+        userCursor = db.rawQuery("select * from '" + table_name + "'", null);
+        userCursor = db.rawQuery(question,null);
+        userCursor.moveToPosition(position);
+        String id = userCursor.getString(userCursor.getColumnIndex(idName));
+        return Integer.parseInt(id);
+    }
+
 
     @SuppressLint("Range")
     public String getIdField(String field, int id, int position){
@@ -88,13 +99,24 @@ public class DbQuestion {
     public void setResulTest(String check, int position){
         ContentValues values = new ContentValues();
         values.put("right", check);
-        db.update(table_name,values, "number_question=?",new String[]{String.valueOf(position+1)});
+        db.update(table_name,values, "number_question=?",new String[]{String.valueOf(position)});
     }
 
     public void setFavorite(String check, int position){
         ContentValues values = new ContentValues();
         values.put("favorite", check);
         db.update(table_name,values, "id_topic=?",new String[]{String.valueOf(position)});
+    }
+    public void setNumberPoints(int check, int position){
+        ContentValues values = new ContentValues();
+        values.put("number_points", check);
+        db.update(table_name,values, "id_test=?",new String[]{String.valueOf(position)});
+    }
+
+    public void setRightAnswer(int check, int position){
+        ContentValues values = new ContentValues();
+        values.put("right_answers", check);
+        db.update(table_name,values, "id_test=?",new String[]{String.valueOf(position)});
     }
 
     @SuppressLint("Range")
@@ -108,7 +130,7 @@ public class DbQuestion {
 
     @SuppressLint("Range")
     public String getCheck(int position){ // временный метод для проверки бд
-        String question = "SELECT " + " right " + " from '" + table_name + "'" + " Where number_question = " + Integer.toString(position+1);
+        String question = "SELECT " + " right " + " from '" + table_name + "'" + " Where number_question = " + position;
         userCursor = db.rawQuery("select * from '" + table_name + "'", null);
         userCursor = db.rawQuery(question,null);
         userCursor.moveToPosition(0);

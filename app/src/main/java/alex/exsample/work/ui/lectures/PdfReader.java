@@ -16,6 +16,8 @@ import androidx.navigation.Navigation;
 
 import com.github.barteksc.pdfviewer.PDFView;
 
+import java.util.Objects;
+
 import alex.exsample.work.R;
 import alex.exsample.work.databinding.FragmentPdfReaderBinding;
 import alex.exsample.work.db.DbQuestion;
@@ -26,7 +28,7 @@ public class PdfReader extends Fragment {
     Toolbar toolbar;
     DbQuestion question;
     Bundle bundle = new Bundle();
-    int id;
+    int id=0;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +50,7 @@ public class PdfReader extends Fragment {
                 return true;
             case R.id.action_favorites:
                 question = new DbQuestion("Topic", getContext());
-                if (question.getField("favorite", id) == "true")
+                if (Objects.equals(question.getField("favorite", id), "true"))
                     question.setFavorite("false",id);
                 else
                     question.setFavorite("true",id);

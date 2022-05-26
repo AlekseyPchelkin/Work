@@ -38,10 +38,11 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
                 public void onClick(View view) {
                     if (Objects.equals((String) binding.textView3.getText(), question.getField("correct_answer",quest.id))) {
                         question.setResulTest("true", quest.id);
-                 //       binding.textView3.setText("правильно");
+                     //   binding.textView3.setText("правильно " + quest.id);
                     }
                     else {
                         question.setResulTest("false", quest.id);
+                     //   binding.textView3.setText("не правильно " + quest.id);
                     }
                 }
             });

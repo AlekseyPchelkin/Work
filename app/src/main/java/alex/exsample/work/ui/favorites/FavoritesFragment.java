@@ -34,18 +34,18 @@ public class FavoritesFragment extends Fragment {
     void init() {
         binding.rcView.setLayoutManager(new GridLayoutManager(this.getContext(), 2)); // количество тем в строке
         binding.rcView.setAdapter(adapter);
-       Theme theme;
-       String item_title, check;
-       DbQuestion question = new DbQuestion("Topic", getContext());
-       for (int i = 0; i < question.getCountFieldPosition("title"); ++i) {
-           check = question.getFavorite(i);
-           if (Objects.equals(check, "true"))
-           {
-               item_title = question.getField("title",i);
-               theme = new Theme(picture_mass[0],item_title);
-               adapter.addTheme(theme);
-           }
-       }
+        Theme theme;
+        String item_title, check;
+        DbQuestion question = new DbQuestion("Topic", getContext());
+        for (int i = 0; i < question.getCountFieldPosition("title"); ++i) {
+            check = question.getFavorite(i);
+            if (Objects.equals(check, "true"))
+            {
+                item_title = question.getField("title",i);//?
+                theme = new Theme(picture_mass[0],item_title);
+                adapter.addTheme(theme);
+            }
+        }
     }
 
     @Override

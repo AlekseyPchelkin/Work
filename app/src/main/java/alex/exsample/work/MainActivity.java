@@ -51,10 +51,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
-       // logoutMI = menu.findItem(R.id.action_search);
-       // logoutMI.setVisible(false);
-       // logoutMI = menu.findItem(R.id.action_edit);
-       // logoutMI.setVisible(false);
+        logoutMI = menu.findItem(R.id.action_favorites);
+        logoutMI.setVisible(false);
+        logoutMI = menu.findItem(R.id.action_test);
+        logoutMI.setVisible(false);
         super.onCreateOptionsMenu(menu);
         return true;
     }

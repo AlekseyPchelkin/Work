@@ -39,7 +39,11 @@ public class TestFragment extends Fragment {
         for (int i = 0; i < question.getCountFieldID("test_description","id", id_theme); ++i){
             item_title = question.getIdField("test_description", id_theme ,i);
             id_test = question.getIdWhereTitle(item_title, "id_test", "test_description");
-            test = new Test(item_title, id_test);
+            question = new DbQuestion("Tests",getContext());
+
+            int count_points = question.getIdWhereId(id_test,"number_points", "id_test", 0);
+            int right_answers = question.getIdWhereId(id_test,"right_answers", "id_test", 0);
+            test = new Test(item_title, id_test, count_points,right_answers);
             adapter.addTest(test);
         }
     }

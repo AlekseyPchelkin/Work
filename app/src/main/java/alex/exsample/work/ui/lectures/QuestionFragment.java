@@ -25,7 +25,9 @@ public class QuestionFragment extends Fragment {
     private QuestionAdapter adapter;
     int number = 0;
     int count = 0;
+    int id_test;
     private DbQuestion question;
+    Bundle bundle = new Bundle();
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentQuestionsBinding.inflate(inflater, container, false);
@@ -47,7 +49,8 @@ public class QuestionFragment extends Fragment {
                 }
 
                 if (number == count){
-                    navController.navigate(R.id.nav_test_result);
+                    bundle.putInt("id_test",id_test);
+                    navController.navigate(R.id.nav_test_result, bundle);
                 }
             }
         });
@@ -61,8 +64,8 @@ public class QuestionFragment extends Fragment {
         binding.rcView.setLayoutManager(new GridLayoutManager(this.getContext(), 1)); // количество тем в строке
         binding.rcView.setAdapter(adapter);
         String quest = question.getField("question_text", number);
-        int id = getArguments().getInt("id_test");
-        count = question.getCountFieldID("question_text", "id_test",id);
+        id_test = getArguments().getInt("id_test");
+        count = question.getCountFieldID("question_text", "id_test",id_test);
         String[] answers = new String[count];
         Question answer;
 

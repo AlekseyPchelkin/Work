@@ -42,8 +42,8 @@
                 android:text="@string/tv1" />
 
             <ProgressBar
-                android:id="@+id/progressBar2"
-                style="?android:attr/progressBarStyle"
+                android:id="@+id/progressTest"
+                style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
