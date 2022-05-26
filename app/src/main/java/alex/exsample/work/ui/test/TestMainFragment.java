@@ -43,7 +43,6 @@ public class TestMainFragment extends Fragment {
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-
             }
         });
 

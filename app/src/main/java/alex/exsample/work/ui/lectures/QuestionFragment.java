@@ -66,11 +66,15 @@ public class QuestionFragment extends Fragment {
         String quest = question.getField("question_text", number);
         id_test = getArguments().getInt("id_test");
         count = question.getCountFieldID("question_text", "id_test",id_test);
+
+
         String[] answers = new String[count];
         Question answer;
 
         for (int i = 1; i < count-1; i++)
-            answers[i] = question.getField("wrong_answer" + Integer.toString(i), number);
+           answers[i] = question.getField("wrong_answer" + i, number);
+
+        try {
         answers[count-1] = question.getField("correct_answer", number);
         shuffleArray(answers);
 
@@ -81,6 +85,7 @@ public class QuestionFragment extends Fragment {
             answer = new Question(quest, number);
             adapter.addQuestion(answer);
         }
+        } catch (Exception e){}
     }
 
     public static void shuffleArray(String[] arr) {
