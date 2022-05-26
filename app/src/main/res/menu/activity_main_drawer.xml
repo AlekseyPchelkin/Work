@@ -24,6 +24,10 @@
             android:id="@+id/nav_theme"
             android:icon="@drawable/ic_menu_camera"
             android:title="Главная" />
+        <item
+            android:id="@+id/nav_test_main"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Тесты" />
 
     </group>
 </menu>

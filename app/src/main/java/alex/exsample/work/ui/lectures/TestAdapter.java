@@ -62,12 +62,12 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.TestHolder> {
         return testList .size();
     }
 
-    void addTest(Test test){
+    public void addTest(Test test){
         testList.add(test);
         notifyDataSetChanged();
     }
 
-    void clearTheme() {
+    public void clearTest() {
         testList .clear();
     }
 }
