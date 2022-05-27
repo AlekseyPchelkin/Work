@@ -63,9 +63,9 @@ public class QuestionFragment extends Fragment {
 
         init();
 
-     //   if (Objects.equals(question.getIdFieldid("written_question", number, "number_question", 0), "true")){
-     //       editText.setVisibility(root.VISIBLE);
-     //   }
+   //    if (Objects.equals(question.getIdFieldid("written_question", number, "number_question", 0), "true")){
+   //         editText.setVisibility(root.VISIBLE);
+   //    }
         return root;
     }
 
@@ -80,9 +80,8 @@ public class QuestionFragment extends Fragment {
         int[] id_quest = new int[count];
         Question answer;
 
-        for (int i = 0; i < count; ++i) {
+        for (int i = 0; i < count; ++i)
             id_quest[i] = question.getIdWhereId(id_test, "number_question", "id_test", i);
-        }
 
         for (int i = 1; i < count-1; i++)
             answers[i] = question.getIdFieldid("wrong_answer" + i, id_quest[number], "number_question", 0);
@@ -102,7 +101,6 @@ public class QuestionFragment extends Fragment {
         }
         } catch (Exception e){}
     }
-
 
     public static void shuffleArray(String[] arr) {
         int n = arr.length;
