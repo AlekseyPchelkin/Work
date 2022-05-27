@@ -16,7 +16,6 @@ import java.util.Objects;
 
 import alex.exsample.work.R;
 import alex.exsample.work.databinding.TestItemBinding;
-import alex.exsample.work.db.DbQuestion;
 
 public class TestAdapter extends RecyclerView.Adapter<TestAdapter.TestHolder> {
     ArrayList<Test> testList = new ArrayList<Test>();
@@ -31,7 +30,7 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.TestHolder> {
 
         void bind(Test test){
             binding.tvTitle.setText(test.test_description);
-            binding.textView2.setText("Тест №" + Integer.toString(test.id));
+            binding.textView2.setText("Тест №" + test.id);
             binding.progressTest.setMax(test.count_points);
             binding.progressTest.setProgress(test.right_answers);
             itemView.setOnClickListener(new View.OnClickListener() {

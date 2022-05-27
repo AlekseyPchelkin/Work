@@ -20,7 +20,6 @@ import alex.exsample.work.databinding.FragmentTestMainBinding;
 import alex.exsample.work.db.DbQuestion;
 import alex.exsample.work.ui.lectures.Test;
 import alex.exsample.work.ui.lectures.TestAdapter;
-import alex.exsample.work.ui.lectures.Theme;
 
 public class TestMainFragment extends Fragment {
     private FragmentTestMainBinding binding;
@@ -29,8 +28,7 @@ public class TestMainFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentTestMainBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        TabLayout tabLayout = binding.tabLayout;
-      //  tabLayout.addTab(tabLayout.newTab().setText("Все тесты"));
+        TabLayout tabLayout = binding.tabLayoutTest;
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -84,5 +82,4 @@ public class TestMainFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-
 }

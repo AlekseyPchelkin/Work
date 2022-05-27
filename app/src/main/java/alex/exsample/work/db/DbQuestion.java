@@ -47,6 +47,16 @@ public class DbQuestion {
         return item_title;
     }
 
+    @SuppressLint("Range")
+    public int getIdPosition(String field, int position){
+        String question = "SELECT " + field + " from '" +  table_name + "'";
+        userCursor = db.rawQuery("select * from '" + table_name + "'", null);
+        userCursor = db.rawQuery(question,null);
+        userCursor.moveToPosition(position);
+        int id = userCursor.getInt(userCursor.getColumnIndex(field));
+        return id;
+    }
+
    @SuppressLint("Range")
    public int getIdWhereTitle(String title, String idName, String filed){
        String question = "SELECT " + idName + " from '" +  table_name + "'" + " Where " + filed + " = '" + title + "'";
@@ -66,7 +76,6 @@ public class DbQuestion {
         String id = userCursor.getString(userCursor.getColumnIndex(idName));
         return Integer.parseInt(id);
     }
-
 
     @SuppressLint("Range")
     public String getIdField(String field, int id, int position){
@@ -96,6 +105,24 @@ public class DbQuestion {
         return item_title;
     }
 
+    @SuppressLint("Range")
+    public String getFavorite(int id){
+        String question = "SELECT favorite from '" + table_name + "'" + " Where id_topic = " + Integer.toString(id + 1);
+        userCursor = db.rawQuery("select * from '" + table_name + "'", null);
+        userCursor = db.rawQuery(question,null);
+        userCursor.moveToPosition(0);
+        return userCursor.getString(userCursor.getColumnIndex("favorite"));
+    }
+
+    @SuppressLint("Range")
+    public String getCheck(int position){ // временный метод для проверки бд
+        String question = "SELECT " + " right " + " from '" + table_name + "'" + " Where number_question = " + position;
+        userCursor = db.rawQuery("select * from '" + table_name + "'", null);
+        userCursor = db.rawQuery(question,null);
+        userCursor.moveToPosition(0);
+        return userCursor.getString(userCursor.getColumnIndex("right"));
+    }
+
     public void setResulTest(String check, int position){
         ContentValues values = new ContentValues();
         values.put("right", check);
@@ -119,21 +146,28 @@ public class DbQuestion {
         db.update(table_name,values, "id_test=?",new String[]{String.valueOf(position)});
     }
 
-    @SuppressLint("Range")
-    public String getFavorite(int id){
-        String question = "SELECT favorite from '" + table_name + "'" + " Where id_topic = " + Integer.toString(id + 1);
-        userCursor = db.rawQuery("select * from '" + table_name + "'", null);
-        userCursor = db.rawQuery(question,null);
-        userCursor.moveToPosition(0);
-        return userCursor.getString(userCursor.getColumnIndex("favorite"));
+    public void setNote(String text_notes, String name_notes, int id){
+        ContentValues values = new ContentValues();
+        values.put("name_notes", name_notes);
+        values.put("text_notes", text_notes);
+        db.update(table_name,values, "id_notes=?",new String[]{String.valueOf(id)});
+    }
+    public void setNoteId(int id, int position){
+        ContentValues values = new ContentValues();
+        values.put("id_notes", position);
+        db.update(table_name,values, "id_notes=?",new String[]{String.valueOf(id)});
     }
 
-    @SuppressLint("Range")
-    public String getCheck(int position){ // временный метод для проверки бд
-        String question = "SELECT " + " right " + " from '" + table_name + "'" + " Where number_question = " + position;
-        userCursor = db.rawQuery("select * from '" + table_name + "'", null);
-        userCursor = db.rawQuery(question,null);
-        userCursor.moveToPosition(0);
-        return userCursor.getString(userCursor.getColumnIndex("right"));
+    public void insertNote(int id) {
+        ContentValues cv = new ContentValues();
+        cv.put("text_notes", "");
+        cv.put("name_notes", "Новая заметка");
+        cv.put("id_notes", id);
+        db.insert(table_name, null, cv);
     }
+
+    public void deliteField(int id, String id_mame){
+        db.delete(table_name,  id_mame + " = ?", new String[]{String.valueOf(id)});
+    }
+
 }

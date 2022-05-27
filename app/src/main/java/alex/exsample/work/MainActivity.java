@@ -39,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
         DrawerLayout drawer = binding.drawerLayout;
 
         NavigationView navigationView = binding.navView;
-        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_gallery,
-                R.id.nav_slideshow, R.id.nav_favorites, R.id.nav_theme, R.id.nav_test_main)
+        mAppBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.nav_favorites, R.id.nav_theme, R.id.nav_test_main, R.id.nav_notes)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
@@ -48,14 +48,12 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
     }
 
-    private MenuItem logoutMI;
+    // private MenuItem logoutMI;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
-        logoutMI = menu.findItem(R.id.action_favorites);
-        logoutMI.setVisible(false);
-        logoutMI = menu.findItem(R.id.action_test);
-        logoutMI.setVisible(false);
+     //   logoutMI = menu.findItem(R.id.action_favorites);
+     //   logoutMI.setVisible(false);
         super.onCreateOptionsMenu(menu);
         return true;
     }

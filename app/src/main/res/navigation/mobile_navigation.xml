@@ -6,24 +6,6 @@
     app:startDestination="@+id/nav_theme">
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="alex.exsample.work.ui.home.HomeFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
-
-    <fragment
-        android:id="@+id/nav_gallery"
-        android:name="alex.exsample.work.ui.test.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
-
-    <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="alex.exsample.work.ui.favorites.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
-
-    <fragment
         android:id="@+id/nav_theme"
         android:name="alex.exsample.work.ui.lectures.ThemeFragment"
         android:label="@string/menu_theme"
@@ -86,8 +68,8 @@
         android:label="@string/test_res"
         tools:layout="@layout/fragment_test_results" >
         <action
-            android:id="@+id/action_nav_test_result_to_nav_test_menu"
-            app:destination="@id/nav_test_menu" />
+            android:id="@+id/action_nav_test_result_to_nav_test_main"
+            app:destination="@id/nav_test_main" />
     </fragment>
 
     <fragment
@@ -102,5 +84,9 @@
         android:label="@string/test_main"
         tools:layout="@layout/fragment_test_main" />
 
-
+    <fragment
+        android:id="@+id/nav_notes"
+        android:name="alex.exsample.work.ui.notes.NotesFragment"
+        android:label="@string/note"
+        tools:layout="@layout/fragment_notes_menu" />
 </navigation>

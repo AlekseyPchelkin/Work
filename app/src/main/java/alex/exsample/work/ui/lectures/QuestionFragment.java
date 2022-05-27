@@ -44,9 +44,8 @@ public class QuestionFragment extends Fragment {
                 if (number!=count)
                     init();
 
-                if (number == count-1){
+                if (number == count-1)
                     button.setText("Завершить");
-                }
 
                 if (number == count){
                     bundle.putInt("id_test",id_test);

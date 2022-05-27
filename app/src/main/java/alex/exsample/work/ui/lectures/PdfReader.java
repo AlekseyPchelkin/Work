@@ -25,7 +25,6 @@ import alex.exsample.work.db.DbQuestion;
 public class PdfReader extends Fragment {
     private FragmentPdfReaderBinding binding;
     private PDFView pdfView;
-    Toolbar toolbar;
     DbQuestion question;
     Bundle bundle = new Bundle();
     int id=0;
@@ -38,7 +37,9 @@ public class PdfReader extends Fragment {
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu,@NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.main, menu);
-      //  super.onCreateOptionsMenu(menu, inflater);
+        menu.findItem(R.id.action_favorites).setVisible(true);
+        menu.findItem(R.id.action_test).setVisible(true);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     public boolean onOptionsItemSelected(@NonNull MenuItem item){

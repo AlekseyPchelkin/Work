@@ -18,7 +18,6 @@ import androidx.navigation.Navigation;
 import java.util.Objects;
 
 import alex.exsample.work.R;
-import alex.exsample.work.databinding.FragmentGalleryBinding;
 import alex.exsample.work.databinding.FragmentTestResultsBinding;
 import alex.exsample.work.db.DbQuestion;
 
@@ -42,7 +41,7 @@ public class TestResultFragment extends Fragment{
             @Override
             public void onClick(View view) {
                 NavController navController = Navigation.findNavController(view);
-                navController.navigate(R.id.nav_theme);
+                navController.navigate(R.id.nav_test_main);
             }
         });
 
