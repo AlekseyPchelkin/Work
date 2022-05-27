@@ -13,8 +13,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import java.util.Objects;
 
 import alex.exsample.work.R;
-import alex.exsample.work.databinding.FragmentFavoritesBinding;
-import alex.exsample.work.databinding.FragmentThemeBinding;
+import alex.exsample.work.databinding.FragmentFavoritesBinding;;
 import alex.exsample.work.db.DbQuestion;
 import alex.exsample.work.ui.lectures.Theme;
 import alex.exsample.work.ui.lectures.ThemeAdapter;
@@ -23,6 +22,7 @@ public class FavoritesFragment extends Fragment {
     private FragmentFavoritesBinding binding;
     private ThemeAdapter adapter;
     int [] picture_mass = new int[]{R.drawable.engine};
+
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentFavoritesBinding.inflate(inflater, container, false);
         View root = binding.getRoot();

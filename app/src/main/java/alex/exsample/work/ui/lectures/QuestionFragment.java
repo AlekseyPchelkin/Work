@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -34,6 +35,8 @@ public class QuestionFragment extends Fragment {
         View root = binding.getRoot();
         adapter = new QuestionAdapter();
         Button button = binding.bt1;
+        EditText editText = binding.etAnswer;
+        editText.setVisibility(root.GONE);
         question = new DbQuestion("Question", getContext());
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -41,8 +44,12 @@ public class QuestionFragment extends Fragment {
             public void onClick(View view) {
                 number++;
                 NavController navController = Navigation.findNavController(view);
-                if (number!=count)
+                if (number!=count){
                     init();
+                  //  if (Objects.equals(question.getIdField("written_question", number, 0), "true")){
+                  //      editText.setVisibility(root.VISIBLE);
+                  //  }
+                }
 
                 if (number == count-1)
                     button.setText("Завершить");
@@ -55,26 +62,35 @@ public class QuestionFragment extends Fragment {
         });
 
         init();
+
+     //   if (Objects.equals(question.getIdFieldid("written_question", number, "number_question", 0), "true")){
+     //       editText.setVisibility(root.VISIBLE);
+     //   }
         return root;
     }
 
     void init() {
         adapter.clearQuestion();
-        binding.rcView.setLayoutManager(new GridLayoutManager(this.getContext(), 1)); // количество тем в строке
+        binding.rcView.setLayoutManager(new GridLayoutManager(this.getContext(), 1));
         binding.rcView.setAdapter(adapter);
-        String quest = question.getField("question_text", number);
         id_test = getArguments().getInt("id_test");
         count = question.getCountFieldID("question_text", "id_test",id_test);
 
-
         String[] answers = new String[count];
+        int[] id_quest = new int[count];
         Question answer;
 
+        for (int i = 0; i < count; ++i) {
+            id_quest[i] = question.getIdWhereId(id_test, "number_question", "id_test", i);
+        }
+
         for (int i = 1; i < count-1; i++)
-           answers[i] = question.getField("wrong_answer" + i, number);
+            answers[i] = question.getIdFieldid("wrong_answer" + i, id_quest[number], "number_question", 0);
+
+        String quest = question.getIdFieldid("question_text", id_quest[number], "number_question", 0);
 
         try {
-        answers[count-1] = question.getField("correct_answer", number);
+        answers[count-1] = question.getIdFieldid("correct_answer", id_quest[number], "number_question", 0);
         shuffleArray(answers);
 
         answer = new Question(quest, number);
@@ -86,6 +102,7 @@ public class QuestionFragment extends Fragment {
         }
         } catch (Exception e){}
     }
+
 
     public static void shuffleArray(String[] arr) {
         int n = arr.length;

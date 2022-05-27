@@ -51,7 +51,7 @@ public class PdfReader extends Fragment {
                 return true;
             case R.id.action_favorites:
                 question = new DbQuestion("Topic", getContext());
-                if (Objects.equals(question.getField("favorite", id), "true"))
+                if (Objects.equals(question.getIdField("favorite", id, 0), "true"))
                     question.setFavorite("false",id);
                 else
                     question.setFavorite("true",id);

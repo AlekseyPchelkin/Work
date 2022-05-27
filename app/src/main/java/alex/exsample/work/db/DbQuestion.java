@@ -87,6 +87,16 @@ public class DbQuestion {
         return item_title;
     }
 
+    @SuppressLint("Range")
+    public String getIdFieldid(String field, int id, String name_id, int position){
+        String question = "SELECT " + field + " from '" + table_name + "'" + " Where " + name_id + " = " + id;
+        userCursor = db.rawQuery("select * from '" + table_name + "'", null);
+        userCursor = db.rawQuery(question,null);
+        userCursor.moveToPosition(position);
+        String item_title = userCursor.getString(userCursor.getColumnIndex(field));
+        return item_title;
+    }
+
     public int getCountFieldID(String field, String id_name, int id){
         String question = "SELECT " + field + " from '" + table_name + "'" + " Where " + id_name  + " = " + id;
         userCursor = db.rawQuery("select * from '" + table_name + "'", null);
