@@ -30,7 +30,7 @@
             <ImageView
                 android:id="@+id/iv2"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="210dp"
                 android:contentDescription="@string/iv2"
                 app:srcCompat="@drawable/maintt" />
 
@@ -40,7 +40,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
                 android:gravity="center"
-                android:text="@string/tv1" />
+                android:text="@string/tv1"
+                android:textSize="20dp"
+                android:textColor="@color/black"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

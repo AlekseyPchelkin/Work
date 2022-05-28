@@ -31,7 +31,7 @@
                 android:id="@+id/textName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="16dp"
+                android:textSize="18dp"
                 android:textColor="@color/black"
                 android:text="Название и тема" />
 
@@ -39,6 +39,7 @@
                 android:id="@+id/textText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="16dp"
                 android:text="TextView" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>

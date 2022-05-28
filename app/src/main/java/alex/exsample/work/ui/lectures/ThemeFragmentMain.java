@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
@@ -32,6 +33,7 @@ public class ThemeFragmentMain extends Fragment {
         binding = FragmentThemeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         String titleTheme = getArguments().getString("title");
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(titleTheme);
         question = new DbQuestion("Themes", getContext());
         int id = question.getIdWhereTitle(titleTheme, "id_theme", "title");
         adapter = new ThemeAdapter();
