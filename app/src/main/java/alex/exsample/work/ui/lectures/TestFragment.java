@@ -34,7 +34,7 @@ public class TestFragment extends Fragment {
     }
 
     void init(int id_theme) {
-        binding.rcView.setLayoutManager(new GridLayoutManager(this.getContext(), 1)); // количество тем в строке
+        binding.rcView.setLayoutManager(new GridLayoutManager(this.getContext(), 2)); // количество тем в строке
         binding.rcView.setAdapter(adapter);
         Test test;
         String item_title;

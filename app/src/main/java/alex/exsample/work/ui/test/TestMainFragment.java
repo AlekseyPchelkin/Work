@@ -50,7 +50,7 @@ public class TestMainFragment extends Fragment {
     }
 
     void initAll(int position){
-        binding.rcTest.setLayoutManager(new GridLayoutManager(this.getContext(), 1)); // количество тем в строке
+        binding.rcTest.setLayoutManager(new GridLayoutManager(this.getContext(), 2)); // количество тем в строке
         binding.rcTest.setAdapter(adapter);
         adapter.clearTest();
         Test test;

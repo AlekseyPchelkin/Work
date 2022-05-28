@@ -7,40 +7,16 @@
 
     <TextView
         android:id="@+id/tvresult"
-        android:layout_width="276dp"
-        android:layout_height="84dp"
+        android:layout_width="361dp"
+        android:layout_height="69dp"
         android:text="Тест сдан"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.481"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.333" />
-
-    <Button
-        android:id="@+id/next"
-        android:layout_width="157dp"
-        android:layout_height="51dp"
-        android:text="Пересдать"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.149"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.814" />
-
-    <Button
-        android:id="@+id/override"
-        android:layout_width="148dp"
-        android:layout_height="49dp"
-        android:text="Завершить"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.836"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.812" />
+        app:layout_constraintVertical_bias="0.372" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -52,5 +28,39 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.437" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:adjustViewBounds="true"
+        android:divider="@drawable/separator"
+        android:dividerPadding="3dp"
+        android:showDividers="middle"
+        app:behavior_hideable="true"
+        app:behavior_peekHeight="80dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            style="?android:attr/buttonBarButtonStyle"
+            android:id="@+id/next"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Пересдать"
+            android:textColor="#673AB7"
+            android:textSize="15dp" />
+
+        <Button
+            android:id="@+id/override"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="fill_parent"
+            android:layout_height="65dp"
+            android:layout_weight="1"
+            android:text="Завершить"
+            android:textColor="#673AB7" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
