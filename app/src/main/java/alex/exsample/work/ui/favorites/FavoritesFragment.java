@@ -21,7 +21,7 @@ import alex.exsample.work.ui.lectures.ThemeAdapter;
 public class FavoritesFragment extends Fragment {
     private FragmentFavoritesBinding binding;
     private ThemeAdapter adapter;
-    int [] picture_mass = new int[]{R.drawable.engine};
+    int [] picture_mass = new int[]{R.drawable.general, R.drawable.enginefeatures, R.drawable.exploitation, R.drawable.repair, R.drawable.oil, R.drawable.tires};
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentFavoritesBinding.inflate(inflater, container, false);
@@ -32,17 +32,19 @@ public class FavoritesFragment extends Fragment {
     }
 
     void init() {
-        binding.rcView.setLayoutManager(new GridLayoutManager(this.getContext(), 2)); // количество тем в строке
+        binding.rcView.setLayoutManager(new GridLayoutManager(this.getContext(), 2));
         binding.rcView.setAdapter(adapter);
         Theme theme;
         String item_title, check;
         DbQuestion question = new DbQuestion("Topic", getContext());
+
+
         for (int i = 0; i < question.getCountFieldPosition("title"); ++i) {
             check = question.getFavorite(i);
             if (Objects.equals(check, "true"))
             {
-                item_title = question.getField("title",i);//?
-                theme = new Theme(picture_mass[0],item_title);
+                item_title = question.getField("title",i);
+                theme = new Theme(picture_mass[i],item_title); // возможен баг из-за разницы id в бд и массиве(0 в массиве  и 1 в бд), массивы я бы переделал на бд
                 adapter.addTheme(theme);
             }
         }

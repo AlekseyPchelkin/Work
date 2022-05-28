@@ -5,32 +5,30 @@
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:title="@string/action_settings"
-        app:showAsAction="never" />
+        app:showAsAction="never"/>
 
     <item
         android:id="@+id/action_favorites"
-        android:title="@android:string/search_go"
-        android:icon="@drawable/ic_menu_camera"
-        android:visible = "false"
-        app:showAsAction="always|collapseActionView" />
-
+        android:title="Добавить в избранное"
+        android:icon="@drawable/favorite_ic_icon"
+        android:visible="false"
+        app:showAsAction="always|collapseActionView"/>
     <item
         android:id="@+id/action_test"
-        android:title="@string/action_settings"
-        android:icon="@drawable/ic_menu_camera"
-        android:visible = "false"
+        android:title="Перейти к тесту"
+        android:icon="@drawable/test_board"
+        android:visible="false"
         app:showAsAction="ifRoom" />
-
     <item
         android:id="@+id/action_note_save"
         android:title="Сохранить"
-        android:icon="@drawable/ic_menu_gallery"
+        android:icon="@drawable/done_ic_icon"
         android:visible = "false"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_note_delit"
         android:title="Удалить"
-        android:icon="@drawable/ic_menu_slideshow"
+        android:icon="@drawable/delete_ic_icon"
         android:visible = "false"
         app:showAsAction="ifRoom" />
 

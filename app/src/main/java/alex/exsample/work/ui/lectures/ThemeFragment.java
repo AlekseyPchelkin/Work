@@ -19,7 +19,7 @@ import alex.exsample.work.db.DbQuestion;
 public class ThemeFragment extends Fragment {
     private FragmentThemeBinding binding;
     private ThemeAdapter adapter;
-    int [] picture_mass = new int[]{R.drawable.engine};
+    int [] picture_mass = new int[]{R.drawable.device, R.drawable.exploitation,R.drawable.repair}; // менять на базу данных
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentThemeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
@@ -36,7 +36,7 @@ public class ThemeFragment extends Fragment {
         DbQuestion question = new DbQuestion("Themes", getContext());
         for (int i = 0; i < question.getCountFieldPosition("title"); ++i ) {
             item_title = question.getField("title",i);
-            theme = new Theme(picture_mass[0],item_title);
+            theme = new Theme(picture_mass[i], item_title);
             adapter.addTheme(theme);
         }
     }

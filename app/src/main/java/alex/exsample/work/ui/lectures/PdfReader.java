@@ -7,9 +7,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -18,6 +20,7 @@ import com.github.barteksc.pdfviewer.PDFView;
 
 import java.util.Objects;
 
+import alex.exsample.work.MainActivity;
 import alex.exsample.work.R;
 import alex.exsample.work.databinding.FragmentPdfReaderBinding;
 import alex.exsample.work.db.DbQuestion;
@@ -51,10 +54,16 @@ public class PdfReader extends Fragment {
                 return true;
             case R.id.action_favorites:
                 question = new DbQuestion("Topic", getContext());
-                if (Objects.equals(question.getIdField("favorite", id, 0), "true"))
+                if (Objects.equals(question.getIdField("favorite", id, 0), "true")){
                     question.setFavorite("false",id);
-                else
+                    Toast toast = Toast.makeText(getContext(), "Тема удалена из избранного", Toast.LENGTH_LONG);
+                    toast.show();
+                }
+                else{
                     question.setFavorite("true",id);
+                    Toast toast = Toast.makeText(getContext(), "Тема добавлена в избранное", Toast.LENGTH_LONG);
+                    toast.show();
+                }
                 return true;
         }
         return true;
@@ -67,6 +76,7 @@ public class PdfReader extends Fragment {
         String titleMainTheme = getArguments().getString("title_main");
         question = new DbQuestion("Topic", getContext());
         id = question.getIdWhereTitle(titleMainTheme, "id_topic", "title");
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Тема - " + titleMainTheme); // вывод названия темы в toolbar
         init(id);
         return root;
     }
@@ -75,7 +85,6 @@ public class PdfReader extends Fragment {
         String id_pdf = question.getPDF(id);
         try {
              pdfView.fromAsset(id_pdf).load();
-       //     ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(id_pdf); // пример вывода названия pdf работает
         } catch (Exception e) {}
     }
 

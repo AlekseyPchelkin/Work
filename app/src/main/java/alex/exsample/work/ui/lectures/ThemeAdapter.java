@@ -27,6 +27,7 @@ public class ThemeAdapter extends RecyclerView.Adapter<ThemeAdapter.ThemeHolder>
     Bundle bundle = new Bundle();
     String []title_name = new String[] {"Техническое устройство систем автомобиля", "Техническое обслуживание автомобилей", "Текущий ремонт автомобилей"};
     // сделать динамическим запросом в базу данных
+
     public class ThemeHolder extends RecyclerView.ViewHolder {
         private ThemeItemBinding binding;
         public ThemeHolder(@NonNull View itemView) {

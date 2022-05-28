@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/nav_theme"
         android:name="alex.exsample.work.ui.lectures.ThemeFragment"
-        android:label="@string/menu_theme"
+        android:label="Главная"
         tools:layout="@layout/fragment_theme" >
         <action
             android:id="@+id/action_nav_theme_to_nav_MainTheme"
@@ -20,7 +20,7 @@
     <fragment
         android:id="@+id/nav_MainTheme"
         android:name="alex.exsample.work.ui.lectures.ThemeFragmentMain"
-        android:label="@string/menu_theme"
+        android:label="Темы"
         tools:layout="@layout/fragment_theme" >
         <action
             android:id="@+id/action_nav_MainTheme_to_nav_theme"
@@ -32,7 +32,7 @@
     <fragment
         android:id="@+id/nav_pdf"
         android:name="alex.exsample.work.ui.lectures.PdfReader"
-        android:label="@string/menu_slideshow"
+        android:label="Тема№"
         tools:layout="@layout/fragment_pdf_reader" >
         <action
             android:id="@+id/action_nav_pdf_to_nav_MainTheme"
@@ -44,7 +44,7 @@
     <fragment
         android:id="@+id/nav_test_menu"
         android:name="alex.exsample.work.ui.lectures.TestFragment"
-        android:label="@string/menu_theme"
+        android:label="Тесты по теме"
         tools:layout="@layout/fragment_test_menu" >
         <action
             android:id="@+id/action_nav_test_to_nav_pdf"
@@ -56,7 +56,7 @@
     <fragment
         android:id="@+id/nav_test"
         android:name="alex.exsample.work.ui.lectures.QuestionFragment"
-        android:label="@string/menu_theme"
+        android:label="Тест №"
         tools:layout="@layout/fragment_questions" >
         <action
             android:id="@+id/action_nav_test_to_nav_test_result"
@@ -68,8 +68,8 @@
         android:label="@string/test_res"
         tools:layout="@layout/fragment_test_results" >
         <action
-            android:id="@+id/action_nav_test_result_to_nav_test"
-            app:destination="@id/nav_test" />
+            android:id="@+id/action_nav_test_result_to_nav_test_menu"
+            app:destination="@id/nav_test_menu" />
     </fragment>
 
     <fragment

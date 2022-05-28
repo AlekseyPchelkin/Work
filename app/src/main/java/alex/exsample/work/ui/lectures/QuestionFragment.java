@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -38,7 +39,6 @@ public class QuestionFragment extends Fragment {
         EditText editText = binding.etAnswer;
         editText.setVisibility(View.GONE);
         question = new DbQuestion("Question", getContext());
-
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,6 +86,8 @@ public class QuestionFragment extends Fragment {
 
         if (Objects.equals(question.getIdFieldid("written_question", id_quest[number], "number_question", 0), "true"))
             wrong_answer = false;
+
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Вопрос " + number); // вывод названия темы в toolbar
         initAnswers(answers, wrong_answer);
     }
 

@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 
@@ -19,12 +20,15 @@ import alex.exsample.work.db.DbQuestion;
 public class TestFragment extends Fragment {
     private FragmentTestMenuBinding binding;
     private TestAdapter adapter;
+    DbQuestion question;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentTestMenuBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         adapter = new TestAdapter();
         int id_theme = getArguments().getInt("id_theme");
+        question = new DbQuestion("Topic", getContext());
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Тесты по теме - " + question.getIdField("title",id_theme,0)); // вывод названия темы в toolbar
         init(id_theme);
         return root;
     }
@@ -35,7 +39,7 @@ public class TestFragment extends Fragment {
         Test test;
         String item_title;
         int id_test;
-        DbQuestion question = new DbQuestion("Tests", getContext());
+        question = new DbQuestion("Tests", getContext());
         for (int i = 0; i < question.getCountFieldID("test_description","id", id_theme); ++i){
             item_title = question.getIdField("test_description", id_theme ,i);
             id_test = question.getIdWhereTitle(item_title, "id_test", "test_description");

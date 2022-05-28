@@ -25,7 +25,7 @@ public class ThemeFragmentMain extends Fragment {
     private FragmentThemeBinding binding;
     private ThemeAdapter adapter;
     DbQuestion question;
-    int [] picture_mass = new int[]{R.drawable.engine};
+    int [] picture_mass = new int[]{R.drawable.general, R.drawable.general, R.drawable.enginefeatures, R.drawable.exploitation, R.drawable.repair, R.drawable.oil, R.drawable.tires};
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -45,9 +45,15 @@ public class ThemeFragmentMain extends Fragment {
         Theme theme;
         String item_title;
         question = new DbQuestion("Topic", getContext());
-        for (int i = 0; i < question.getCountFieldID("title", "id",id); ++i) {
+
+        int[] arr_id = new int[question.getCountFieldID("title", "id",id)];
+
+        for (int i = 0; i < arr_id.length; ++i)
+            arr_id[i] = question.getIdWhereId( id,"id_topic", "id", i);
+
+        for (int i = 0; i < arr_id.length; ++i) {
            item_title = question.getIdField("title", id, i);
-           theme = new Theme(picture_mass[0],item_title);
+           theme = new Theme(picture_mass[arr_id[i]],item_title);
            adapter.addTheme(theme);
         }
     }
