@@ -179,5 +179,4 @@ public class DbQuestion {
     public void deliteField(int id, String id_mame){
         db.delete(table_name,  id_mame + " = ?", new String[]{String.valueOf(id)});
     }
-
 }

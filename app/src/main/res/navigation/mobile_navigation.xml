@@ -68,8 +68,8 @@
         android:label="@string/test_res"
         tools:layout="@layout/fragment_test_results" >
         <action
-            android:id="@+id/action_nav_test_result_to_nav_test_main"
-            app:destination="@id/nav_test_main" />
+            android:id="@+id/action_nav_test_result_to_nav_test"
+            app:destination="@id/nav_test" />
     </fragment>
 
     <fragment

@@ -24,11 +24,11 @@ import alex.exsample.work.db.DbQuestion;
 public class QuestionFragment extends Fragment {
     private FragmentQuestionsBinding binding;
     private QuestionAdapter adapter;
-    int number = 0;
-    int count = 0;
-    int id_test;
+    int id_test, number = 0, count = 0;
     private DbQuestion question;
     Bundle bundle = new Bundle();
+    int [] id_quest;
+    boolean wrong_answer = true;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentQuestionsBinding.inflate(inflater, container, false);
@@ -36,8 +36,9 @@ public class QuestionFragment extends Fragment {
         adapter = new QuestionAdapter();
         Button button = binding.bt1;
         EditText editText = binding.etAnswer;
-        editText.setVisibility(root.GONE);
+        editText.setVisibility(View.GONE);
         question = new DbQuestion("Question", getContext());
+
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,31 +46,29 @@ public class QuestionFragment extends Fragment {
                 number++;
                 NavController navController = Navigation.findNavController(view);
                 if (number!=count){
-                    init();
-                  //  if (Objects.equals(question.getIdField("written_question", number, 0), "true")){
-                  //      editText.setVisibility(root.VISIBLE);
-                  //  }
+                    initForm();
+                    chekAnswer(editText.getText().toString(), wrong_answer);
                 }
 
                 if (number == count-1)
                     button.setText("Завершить");
 
                 if (number == count){
+                    chekAnswer(editText.getText().toString(), wrong_answer);
                     bundle.putInt("id_test",id_test);
                     navController.navigate(R.id.nav_test_result, bundle);
                 }
             }
         });
 
-        init();
+        initForm();
+        if (Objects.equals(question.getIdFieldid("written_question", id_quest[number], "number_question", 0), "true"))
+            editText.setVisibility(View.VISIBLE);
 
-   //    if (Objects.equals(question.getIdFieldid("written_question", number, "number_question", 0), "true")){
-   //         editText.setVisibility(root.VISIBLE);
-   //    }
         return root;
     }
 
-    void init() {
+    void initForm() {
         adapter.clearQuestion();
         binding.rcView.setLayoutManager(new GridLayoutManager(this.getContext(), 1));
         binding.rcView.setAdapter(adapter);
@@ -77,8 +76,7 @@ public class QuestionFragment extends Fragment {
         count = question.getCountFieldID("question_text", "id_test",id_test);
 
         String[] answers = new String[count];
-        int[] id_quest = new int[count];
-        Question answer;
+        id_quest = new int[count];
 
         for (int i = 0; i < count; ++i)
             id_quest[i] = question.getIdWhereId(id_test, "number_question", "id_test", i);
@@ -86,20 +84,38 @@ public class QuestionFragment extends Fragment {
         for (int i = 1; i < count-1; i++)
             answers[i] = question.getIdFieldid("wrong_answer" + i, id_quest[number], "number_question", 0);
 
+        if (Objects.equals(question.getIdFieldid("written_question", id_quest[number], "number_question", 0), "true"))
+            wrong_answer = false;
+        initAnswers(answers, wrong_answer);
+    }
+
+    void chekAnswer(String text, boolean written_question){
+        if (!written_question) {
+            if (Objects.equals(question.getIdFieldid("correct_answer", id_quest[number - 1], "number_question", 0), text)) {
+                question.setResulTest("true", id_quest[number - 1]);
+            } else {
+                question.setResulTest("false", id_quest[number - 1]);
+            }
+        }
+    }
+
+    void initAnswers(String[] answers, boolean wrong_answer){
+        Question answer;
         String quest = question.getIdFieldid("question_text", id_quest[number], "number_question", 0);
-
         try {
-        answers[count-1] = question.getIdFieldid("correct_answer", id_quest[number], "number_question", 0);
-        shuffleArray(answers);
+            answers[count-1] = question.getIdFieldid("correct_answer", id_quest[number], "number_question", 0);
+            shuffleArray(answers);
 
-        answer = new Question(quest, number);
-        adapter.addQuestion(answer);
-        for (int i = 1; i < count; ++i){
-            quest = answers[i];
             answer = new Question(quest, number);
             adapter.addQuestion(answer);
-        }
-        } catch (Exception e){}
+            if (wrong_answer) {
+                for (int i = 1; i < count; ++i) {
+                    quest = answers[i];
+                    answer = new Question(quest, number);
+                    adapter.addQuestion(answer);
+                }
+            }
+        } catch (Exception ignored){}
     }
 
     public static void shuffleArray(String[] arr) {
