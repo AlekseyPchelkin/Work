@@ -69,7 +69,7 @@ public class DbQuestion {
 
     @SuppressLint("Range")
     public int getIdWhereId(int idWhere, String idName, String filed, int position){
-        String question = "SELECT " + idName + " from '" +  table_name + "'" + " Where " + filed + " = '" + idWhere + "'";
+        String question = "SELECT " + idName + " from '" +  table_name + "'" + " Where " + filed + " = " + idWhere + "";
         userCursor = db.rawQuery("select * from '" + table_name + "'", null);
         userCursor = db.rawQuery(question,null);
         userCursor.moveToPosition(position);
@@ -78,8 +78,18 @@ public class DbQuestion {
     }
 
     @SuppressLint("Range")
-    public String getIdField(String field, int id, int position){
-        String question = "SELECT " + field + " from '" + table_name + "'" + " Where id = " + id;
+    public String getIdWhereId(String idWhere, String idName, String filed, int position){
+        String question = "SELECT " + idName + " from '" +  table_name + "'" + " Where " + filed + " = '" + idWhere + "'";
+        userCursor = db.rawQuery("select * from '" + table_name + "'", null);
+        userCursor = db.rawQuery(question,null);
+        userCursor.moveToPosition(position);
+        String id = userCursor.getString(userCursor.getColumnIndex(idName));
+        return id;
+    }
+
+    @SuppressLint("Range")
+    public String getIdField(String field, int id, String idName, int position){
+        String question = "SELECT " + field + " from '" + table_name + "'" + " Where " + idName + " = " + id;
         userCursor = db.rawQuery("select * from '" + table_name + "'", null);
         userCursor = db.rawQuery(question,null);
         userCursor.moveToPosition(position);
@@ -133,10 +143,10 @@ public class DbQuestion {
         return userCursor.getString(userCursor.getColumnIndex("right"));
     }
 
-    public void setResulTest(String check, int position){
+    public void setResulTest(int point, int position){
         ContentValues values = new ContentValues();
-        values.put("right", check);
-        db.update(table_name,values, "number_question=?",new String[]{String.valueOf(position)});
+        values.put("points", point);
+        db.update("Question",values, "number_question=?",new String[]{String.valueOf(position)});
     }
 
     public void setFavorite(String check, int position){

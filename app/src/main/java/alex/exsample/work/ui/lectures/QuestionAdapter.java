@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Random;
 
 import alex.exsample.work.R;
 import alex.exsample.work.databinding.QuestionsItemBinding;
@@ -31,19 +32,22 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
 
         void bind(Question quest){
             binding.textView3.setText(quest.answer);
-            question = new DbQuestion("Question", itemView.getContext());
-
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (Objects.equals((String) binding.textView3.getText(), question.getField("correct_answer",quest.id))) {
-                        question.setResulTest("true", quest.id);
-                     //   binding.textView3.setText("правильно " + quest.id);
+                    question = new DbQuestion("Answers", itemView.getContext());
+                    int point=0;
+                    if (Objects.equals((String) question.getIdWhereId(binding.textView3.getText().toString(),"right","answer", 0), "true")) {
+                        question = new DbQuestion("Question", itemView.getContext());
+                        point = question.getIdWhereId(quest.id,"points","number_question",0);
+                        question.setResulTest(point+1, quest.id);
+                        binding.textView3.setBackgroundResource(R.color.green);
                     }
                     else {
-                        question.setResulTest("false", quest.id);
-                     //   binding.textView3.setText("не правильно " + quest.id);
-                    }
+                        question.setResulTest(0, quest.id);
+                        binding.textView3.setBackgroundResource(R.color.rad);
+                        //binding.textView3.setText("не правильно " + quest.id);
+                   }
                 }
             });
         }

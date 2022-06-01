@@ -28,7 +28,7 @@ public class TestFragment extends Fragment {
         adapter = new TestAdapter();
         int id_theme = getArguments().getInt("id_theme");
         question = new DbQuestion("Topic", getContext());
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Тесты по теме - " + question.getIdField("title",id_theme,0)); // вывод названия темы в toolbar
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Тесты по теме - " + question.getIdField("title",id_theme, "id_theme" , 0)); // вывод названия темы в toolbar
         init(id_theme);
         return root;
     }
@@ -40,8 +40,8 @@ public class TestFragment extends Fragment {
         String item_title;
         int id_test;
         question = new DbQuestion("Tests", getContext());
-        for (int i = 0; i < question.getCountFieldID("test_description","id", id_theme); ++i){
-            item_title = question.getIdField("test_description", id_theme ,i);
+        for (int i = 0; i < question.getCountFieldID("test_description","id_topic", id_theme); ++i){
+            item_title = question.getIdField("test_description", id_theme, "id_topic" ,i);
             id_test = question.getIdWhereTitle(item_title, "id_test", "test_description");
             question = new DbQuestion("Tests",getContext());
 

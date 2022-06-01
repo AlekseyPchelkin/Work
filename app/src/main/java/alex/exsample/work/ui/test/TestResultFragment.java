@@ -69,11 +69,14 @@ public class TestResultFragment extends Fragment{
         for (int i = 0; i < count_answers; ++i)
             arr[i] = question.getIdWhereId(id,"number_question", "id_test", i);
 
+        //question.getIdField()
+
         while (iter != arr.length){
            if (Objects.equals(question.getCheck(arr[iter]), "true"))
                 counter_right_answers++;
            iter++;
         }
+
         question = new DbQuestion("Tests", getContext());
         question.setNumberPoints(count_answers,id);
         question.setRightAnswer(counter_right_answers,id);

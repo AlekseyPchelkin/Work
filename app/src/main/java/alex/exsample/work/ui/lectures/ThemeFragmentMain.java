@@ -48,13 +48,13 @@ public class ThemeFragmentMain extends Fragment {
         String item_title;
         question = new DbQuestion("Topic", getContext());
 
-        int[] arr_id = new int[question.getCountFieldID("title", "id",id)];
+        int[] arr_id = new int[question.getCountFieldID("title", "id_theme",id)];
 
         for (int i = 0; i < arr_id.length; ++i)
-            arr_id[i] = question.getIdWhereId( id,"id_topic", "id", i);
+            arr_id[i] = question.getIdWhereId( id,"id_topic", "id_theme", i);
 
         for (int i = 0; i < arr_id.length; ++i) {
-           item_title = question.getIdField("title", id, i);
+           item_title = question.getIdField("title", id, "id_theme", i);
            theme = new Theme(picture_mass[arr_id[i]],item_title);
            adapter.addTheme(theme);
         }

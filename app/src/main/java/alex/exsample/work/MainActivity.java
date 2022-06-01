@@ -1,5 +1,6 @@
 package alex.exsample.work;
 
+import alex.exsample.work.ui.test.TestResultFragment;
 import android.os.Bundle;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
@@ -48,12 +49,9 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
     }
 
-    // private MenuItem logoutMI;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
-     //   logoutMI = menu.findItem(R.id.action_favorites);
-     //   logoutMI.setVisible(false);
         super.onCreateOptionsMenu(menu);
         return true;
     }

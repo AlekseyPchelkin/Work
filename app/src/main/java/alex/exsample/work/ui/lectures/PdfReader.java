@@ -54,7 +54,7 @@ public class PdfReader extends Fragment {
                 return true;
             case R.id.action_favorites:
                 question = new DbQuestion("Topic", getContext());
-                if (Objects.equals(question.getIdField("favorite", id, 0), "true")){
+                if (Objects.equals(question.getIdField("favorite", id, "id_theme", 0), "true")){
                     question.setFavorite("false",id);
                     Toast toast = Toast.makeText(getContext(), "Тема удалена из избранного", Toast.LENGTH_LONG);
                     toast.show();
